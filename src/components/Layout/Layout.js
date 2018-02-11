@@ -7,7 +7,6 @@ const layout = ( props ) => (
             Toolbar, SideDrawer, Backdrop
         </div>
         <main className = {classes.Content}>
-            Text
             { props.children }
         </main>
     </React.Fragment>
