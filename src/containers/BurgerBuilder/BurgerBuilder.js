@@ -54,34 +54,42 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        //alert("You continue!");
-        this.setState({loading: true});
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: "Liudmyla Iefremova",
-                address: {
-                    street: "Some street 1",
-                    zipCode: '01300',
-                    country: 'Ukraine'
-                },
-                email: 'test@test.com'
-            },
-            deliveryMethod: 'fastest'
-        }
-        axios.post('/orders.json', order)
-            .then(response => {
-                this.setState({
-                    loading: false,
-                    purchasing: false});
-            })
-            .catch(error => {
-                //console.log(error)
-                this.setState({
-                    loading: false,
-                    purchasing: false});
-            });
+        // //alert("You continue!");
+        // this.setState({loading: true});
+        // const order = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: "Liudmyla Iefremova",
+        //         address: {
+        //             street: "Some street 1",
+        //             zipCode: '01300',
+        //             country: 'Ukraine'
+        //         },
+        //         email: 'test@test.com'
+        //     },
+        //     deliveryMethod: 'fastest'
+        // }
+        // axios.post('/orders.json', order)
+        //     .then(response => {
+        //         this.setState({
+        //             loading: false,
+        //             purchasing: false});
+        //     })
+        //     .catch(error => {
+        //         //console.log(error)
+        //         this.setState({
+        //             loading: false,
+        //             purchasing: false});
+        //     });
+        let queryParam = Object.entries({...this.state.ingredients})
+        .map(arr => {
+            return `${arr[0]}=${arr[1]}`
+        }).join('&')
+        this.props.history.push({
+            pathname: '/checkout',
+            search: `?${queryParam}`
+        });
     }
 
     addIngredientHandler = (type) => {
