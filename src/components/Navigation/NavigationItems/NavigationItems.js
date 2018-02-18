@@ -5,10 +5,14 @@ import NavigationItem from './NavigationItem/NavigationItem';
 const navigationItems = (props) => (
     <ul className={classes.NavigationItems}>
         <NavigationItem link="/">Burger Builder</NavigationItem>
-        <NavigationItem link="/orders">Orders</NavigationItem>
-        { !props.isAuthenticated 
-            ? <NavigationItem link="/auth">Authenticate</NavigationItem> 
-            : <NavigationItem link="/logout">Logout</NavigationItem>}
+        { props.isAuthenticated 
+            ?   <React.Fragment>
+                    <NavigationItem link="/orders">Orders</NavigationItem>
+                    <NavigationItem link="/logout">Logout</NavigationItem>
+                </React.Fragment>
+            : <NavigationItem link="/auth">Authenticate</NavigationItem> 
+        }
+
     </ul>
 );
 
