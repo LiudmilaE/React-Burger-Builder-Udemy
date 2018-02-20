@@ -1,19 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Button from '../../UI/Button/Button';
 
-class OrderSummary extends Component {
-    //this can be a functional component
-    componentWillUpdate() {
-        console.log('[OrderSummary] willUpdate');
-    }
+const orderSummary = (props) => {
 
-    render () {
-        const ingredientSummary = Object.keys(this.props.ingredients)
+        const ingredientSummary = Object.keys(props.ingredients)
         .map(ingKey => {
             return (
             <li key={ingKey}>
                 <span style={{textTransform: 'capitalize'}}>
-                {ingKey}</span>: {this.props.ingredients[ingKey]}
+                {ingKey}</span>: {props.ingredients[ingKey]}
             </li>)
         });
         return (
@@ -23,13 +18,12 @@ class OrderSummary extends Component {
                 <ul>
                     {ingredientSummary}
                 </ul>
-                <p><strong>Total Price: {this.props.price}</strong></p>
+                <p><strong>Total Price: {props.price}</strong></p>
                 <p>Continue to Checkout?</p>
-                <Button btnType="Danger" clicked={this.props.purchaseCancelled}>CANCEL</Button>
-                <Button btnType="Success" clicked={this.props.purchaseContinued}>CONTINUE</Button>
+                <Button btnType="Danger" clicked={props.purchaseCancelled}>CANCEL</Button>
+                <Button btnType="Success" clicked={props.purchaseContinued}>CONTINUE</Button>
             </React.Fragment>
-        )
-    } 
+        ) 
 };
 
-export default OrderSummary;
+export default orderSummary;
